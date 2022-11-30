@@ -7,8 +7,6 @@ import { GiBookPile } from 'react-icons/gi';
 
 export default function Home() {
 
-    const router = useRouter();
-
     const [transactions, setTransactions] = useState([]);
 
     useEffect(() => {

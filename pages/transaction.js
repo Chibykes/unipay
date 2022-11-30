@@ -29,15 +29,15 @@ export default function Home() {
   const router = useRouter();
   const {reference} = router.query;
 
-  const [transaction, setTransaction] = useState([]);
+  const [transaction, setTransaction] = useState({});
 
   
   useEffect(() => {
 
-    let info = (JSON.parse(localStorage.getItem('transactions'))).find(t => t.data.reference === reference);
+    let info = JSON.parse(localStorage.getItem('transactions')).find(t => t.data.reference === reference);
     setTransaction(info);
     
-  }, []);
+  }, [reference]);
 
   return (
     <div>
@@ -72,7 +72,7 @@ export default function Home() {
                   bgColor='#000'
                   fgColor='#fff'
                   size={120}
-                  value={reference}
+                  value={reference || "0000000000000"}
                 />
               </div>
             </div>
@@ -80,23 +80,23 @@ export default function Home() {
             <div className='bg-[#0c0c0c] divide-y divide-zinc-800 p-4 rounded-lg'>
                 <div className='py-2'>
                     <p className='text-xs text-zinc-700'>Type</p>
-                    <p className='font-bold'>{transaction.paymentFor}</p>
+                    <p className='font-bold'>{transaction?.paymentFor}</p>
                 </div>
                 <div className='py-2'>
                     <p className='text-xs text-zinc-700'>Fullname</p>
-                    <p className='font-bold'>{transaction.fullname}</p>
+                    <p className='font-bold'>{transaction?.fullname}</p>
                 </div>
                 <div className='py-2'>
                     <p className='text-xs text-zinc-700'>Email</p>
-                    <p className='font-bold'>{transaction.email}</p>
+                    <p className='font-bold'>{transaction?.email}</p>
                 </div>
                 <div className='py-2'>
                     <p className='text-xs text-zinc-700'>Phone</p>
-                    <p className='font-bold'>{transaction.phone}</p>
+                    <p className='font-bold'>{transaction?.phone}</p>
                 </div>
             </div>
 
-            <p className='font-bold text-4xl text-center'>&#8358;{Number(transaction.amount).toLocaleString()}</p>
+            <p className='font-bold text-4xl text-center'>&#8358;{Number(transaction?.amount).toLocaleString()}</p>
 
             <div className=''>
                 <p onClick={() => window.print()} className='flex items-center justify-center gap-2 p-3 bg-sky-600 rounded-md bg-transparent w-full text-center text-sm font-bold'>
