@@ -68,11 +68,11 @@ export default function Home() {
       </Head>
 
 
-      <main className="w-full h-screen max-w-md mx-auto">
+      <main className="w-full h-screen max-w-md p-5 mx-auto">
 
         <p className='text-center font-bold py-4'>Confirm Payments</p>
 
-        <div className='p-4 space-y-4'>
+        <div className='space-y-4'>
             
             <div className='relative w-10 h-10 mx-auto'>
                 <Image src={`/img/${payment?.university?.logo}`} layout="fill" objectFit="cover" />

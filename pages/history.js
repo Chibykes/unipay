@@ -22,7 +22,7 @@ export default function Home() {
       </Head>
 
 
-      <main className="w-full h-screen max-w-md mx-auto">
+      <main className="w-full h-screen max-w-md p-5 mx-auto p-5">
 
         <p className='text-center font-bold py-4'>History</p>
 

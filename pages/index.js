@@ -39,7 +39,7 @@ export default function Home() {
       </Head>
 
 
-      <main className="w-full h-screen max-w-md mx-auto flex flex-col justify-center items-center">
+      <main className="w-full h-screen max-w-md p-5 mx-auto flex flex-col justify-center items-center">
 
         {/* <div className='space-y-3'>
           <div className=''>

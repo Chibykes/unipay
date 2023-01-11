@@ -19,7 +19,7 @@ export default function Home() {
       </Head>
 
 
-      <main className="w-full h-screen max-w-md mx-auto">
+      <main className="w-full h-screen max-w-md p-5 mx-auto">
 
 
         <div className='p-4 py-20 space-y-4'>

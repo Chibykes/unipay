@@ -33,7 +33,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="w-full h-screen max-w-sm mx-auto">
+      <main className="w-full h-screen max-w-md p-5 mx-auto p-5">
 
         <div className='flex items-center py-4'>
             <div className='flex items-center space-x-3'>

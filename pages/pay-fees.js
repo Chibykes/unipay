@@ -50,11 +50,11 @@ export default function Home() {
       </Head>
 
 
-      <main className="w-full h-screen max-w-md mx-auto">
+      <main className="w-full h-screen max-w-md p-5 mx-auto">
 
         <p className='text-center font-bold py-4'>Pay Fees</p>
 
-        <form onSubmit={handleSubmit} className='p-4 space-y-4'>
+        <form onSubmit={handleSubmit} className='space-y-4'>
 
             <div className='border-2 border-neutral-400 p-3 flex items-center gap-4 rounded-md' onClick={() => setModalOpen(true)}>
                 <div className='relative w-7 h-7 rounded-full overflow-hidden'>
