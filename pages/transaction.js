@@ -69,15 +69,15 @@ export default function Home() {
 
               <div className=''>
                 <QRCode 
-                  bgColor='#000'
-                  fgColor='#fff'
+                  bgColor='#fff'
+                  fgColor='#000'
                   size={120}
                   value={reference || "0000000000000"}
                 />
               </div>
             </div>
 
-            <div className='bg-[#0c0c0c] divide-y divide-zinc-800 p-4 rounded-lg'>
+            <div className='bg-neutral-200 divide-y divide-neutral-600 p-4 rounded-lg'>
                 <div className='py-2'>
                     <p className='text-xs text-zinc-700'>Type</p>
                     <p className='font-bold'>{transaction?.paymentFor}</p>
@@ -99,7 +99,7 @@ export default function Home() {
             <p className='font-bold text-4xl text-center'>&#8358;{Number(transaction?.amount).toLocaleString()}</p>
 
             <div className=''>
-                <p onClick={() => window.print()} className='flex items-center justify-center gap-2 p-3 bg-sky-600 rounded-md bg-transparent w-full text-center text-sm font-bold'>
+                <p onClick={() => window.print()} className='flex items-center justify-center gap-2 p-3 text-white bg-black rounded-md bg-transparent w-full text-center text-sm font-bold'>
                     Print
                     <BsPrinterFill className='text-white' />
                 </p>

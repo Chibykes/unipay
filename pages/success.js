@@ -29,7 +29,7 @@ export default function Home() {
         <p className='text-center font-bold py-4'>Transaction Success</p>
 
             <Link href={`/transaction?reference=${router.query.reference}`} className='flex justify-center'>
-                <p className='inline-flex items-center justify-center gap-2 p-3 bg-sky-600 rounded-md bg-transparent text-center text-sm font-bold'>
+                <p className='inline-flex items-center justify-center gap-2 p-4 bg-black text-white rounded-md bg-transparent text-center text-sm font-bold'>
                     <RiFileHistoryFill className='text-white' />
                     View Transaction
                 </p>

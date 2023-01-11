@@ -31,7 +31,7 @@ export default function Home() {
     reference: (new Date()).getTime().toString(),
     email: "user@example.com",
     amount: 20000,
-    publicKey: 'pk_test_7b98db18eb8fb9e5557faa2e0104f188c0ea6323',
+    publicKey: 'pk_test_1036b2692892ebe21cf87429183177c154984321',
   });
 
   const initializePayment = usePaystackPayment(config);
@@ -80,7 +80,7 @@ export default function Home() {
 
             <p className='font-bold text-center'>{payment?.university?.name}</p>
 
-            <div className='bg-[#0c0c0c] divide-y divide-zinc-800 p-4 rounded-lg'>
+            <div className='bg-neutral-200 divide-y divide-neutral-600 p-4 rounded-lg'>
                 <div className='py-2'>
                     <p className='text-xs text-zinc-700'>Type</p>
                     <p className='font-bold'>{payment?.paymentFor}</p>
@@ -102,7 +102,7 @@ export default function Home() {
             <p className='font-bold text-3xl text-center'>&#8358;{Number(payment?.amount).toLocaleString()}</p>
 
             <div className=''>
-                <p onClick={() => initializePayment(onSuccess, onClose)} className='flex items-center justify-center gap-2 p-3 bg-sky-600 rounded-md bg-transparent w-full text-center text-sm font-bold'>
+                <p onClick={() => initializePayment(onSuccess, onClose)} className='text-white flex items-center justify-center gap-2 p-4 bg-black rounded-md bg-transparent w-full text-center text-sm font-bold'>
                     Continue
                     <BsArrowRight className='text-white' />
                 </p>

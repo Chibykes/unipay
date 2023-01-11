@@ -2,10 +2,12 @@ import { Alert, Avatar, Button, Dropdown, Label, Navbar, TextInput } from 'flowb
 import Head from 'next/head';
 import Image from 'next/image';
 import { RiFileHistoryFill, RiRefundFill, RiSecurePaymentFill } from 'react-icons/ri';
+import { MdOutlineQrCodeScanner } from 'react-icons/md';
 import { GiBookPile, GiWallet } from 'react-icons/gi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import SingleTransactionList from '../components/SingleTransactionList';
 
 export default function Home() {
 
@@ -31,108 +33,51 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <main className="w-full h-screen max-w-sm mx-auto">
 
-      <main className="w-full h-screen max-w-md mx-auto">
-
-      <Navbar
-        fluid={true}
-        rounded={true}
-        className="bg-black px-4"
-        >
-        <Navbar.Brand href="/">
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-                Unipay
-            </span>
-        </Navbar.Brand>
-        
-        <div className="flex md:order-2">
-            <Dropdown
-            arrowIcon={false}
-            inline={true}
-            label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
-            >
-            <Dropdown.Header>
-                <span className="block text-sm">
-                Bonnie Green
-                </span>
-                <span className="block truncate text-sm font-medium">
-                name@flowbite.com
-                </span>
-            </Dropdown.Header>
-            <Dropdown.Item>
-                Dashboard
-            </Dropdown.Item>
-            <Dropdown.Item>
-                Settings
-            </Dropdown.Item>
-            <Dropdown.Item>
-                Earnings
-            </Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item>
-                Sign out
-            </Dropdown.Item>
-            </Dropdown>
-            {/* <Navbar.Toggle /> */}
-        </div>
-        </Navbar>
-
-        <div className='p-4'>
-
-            <div className='relative overflow-hidden p-4 bg-[#0c0c0c] rounded-md'>
-                <p className='text-4xl mb-2 font-bold'>
-                    {/* <span className=''>&#8358;</span> */}
-                    <span className=''>{transactions.length}</span>
-                </p>
-                <p className='text-xs text-zinc-700'>Total Payments</p>
-
-                <GiWallet className='absolute top-1/2 -translate-y-1/2 right-4 text-5xl text-zinc-900 opacity-50' />
+        <div className='flex items-center py-4'>
+            <div className='flex items-center space-x-3'>
+                <div className='w-8 h-8 bg-black rounded-full'></div>
+                <p className='text-xs font-bold'>Hello, Student</p>
             </div>
 
+            <MdOutlineQrCodeScanner className="text-xl text-black ml-auto" />
         </div>
 
-        <p className='px-4 py-2 font-bold text-xs'>Actions</p>
-        <div className='grid grid-cols-2 gap-4 p-4'>
-
-            <Link href="/pay-fees" className='p-4 space-y-2 border border-zinc-900 rounded-md flex flex-col items-center justify-center'>
-                <RiSecurePaymentFill className="text-3xl" />
-                <p className='font-bold text-xs text-white'>Pay Fees</p>
-            </Link>
-
-            {/* <div className='p-4 space-y-2 border border-zinc-900 rounded-md flex flex-col items-center justify-center'>
-                <RiRefundFill className="text-3xl" />
-                <p className='font-bold text-xs text-white'>Fund Wallet</p>
-            </div> */}
-
-            <Link href="/history" className='p-4 space-y-2 border border-zinc-900 rounded-md flex flex-col items-center justify-center'>
-                <RiFileHistoryFill className="text-3xl" />
-                <p className='font-bold text-xs text-white'>History</p>
-            </Link>
-
+        <div className='flex items-center px-8 py-12 bg-black text-white rounded-2xl'>
+            <div className='space-y-2'>
+                <p className='text-xs'>Total Payments</p>
+                <p className='text-4xl font-bold'>{(transactions.length).toLocaleString()}</p>
+            </div>
         </div>
 
-        <div className='p-4 space-y-4'>
+        <div className='grid grid-cols-2 gap-4 py-4'>
+            <Link href="/pay-fees" className='p-4 bg-[#18A47E] text-xs text-center text-white rounded-xl'>Pay</Link>
+            <Link href="/history" className='p-4 bg-black text-xs text-center text-white rounded-xl'>History</Link>
+        </div>
 
-            {transactions?.slice(0,5).map(({paymentFor, university:{name}, data: {reference}}) => (
-                <Link href={`/transaction?reference=${reference}`} key={reference} className='p-3 flex gap-4 items-center bg-[#0c0c0c] rounded-md'>
-                    <div className='bg-neutral-700 rounded-full w-8 h-8 flex justify-center items-center'>
-                        <GiBookPile className="text-neutral-300" />
-                    </div>
-
-                    <div className=''>
-                        <p className='font-bold'>{paymentFor}</p>
-                        <p className='text-sm text-neutral-700'>{name}</p>
-                        <p className='text-xs text-neutral-700'>
-                            <span className='font-bold'>Ref: </span>{reference}
-                            {/* <span className='font-bold ml-5'>Time: </span>15/11/2022 14:08:33 */}
-                        </p>
-                    </div>
-                </Link>
-            ))}
-
+        <div className='py-4'>
+            <p className='text-xs font-bold pb-3'>Transactions</p>
+            <div className='space-y-3'>
+                
+                {transactions?.slice(0,5).map(({paymentFor, university:{name}, data: {reference}}) => (
+                    <SingleTransactionList 
+                        key={reference}
+                        name={name}
+                        paymentFor={paymentFor}
+                        reference={reference}
+                    />
+                ))}
+                
+                <div className='flex justify-center'>
+                    <Link href="/history" className='inline-block mx-auto rounded-md text-white bg-black py-2 px-4 text-xs font-bold'>More Transactions</Link>
+                </div>
+            </div>
         </div>
 
       </main>
+
+
 
     </div>
   )

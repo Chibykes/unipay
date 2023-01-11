@@ -35,6 +35,12 @@ export default function Home() {
         setForm({...form, paymentFor: paymentFor.type, amount: paymentFor.amount})
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        localStorage.setItem('payment', JSON.stringify(form))
+        router.push('/confirmation');
+    }
+
   return (
     <div>
       <Head>
@@ -48,9 +54,9 @@ export default function Home() {
 
         <p className='text-center font-bold py-4'>Pay Fees</p>
 
-        <div className='p-4 space-y-4'>
+        <form onSubmit={handleSubmit} className='p-4 space-y-4'>
 
-            <div className='p-3 flex items-center gap-4 bg-[#0f0f0f] rounded-md' onClick={() => setModalOpen(true)}>
+            <div className='border-2 border-neutral-400 p-3 flex items-center gap-4 rounded-md' onClick={() => setModalOpen(true)}>
                 <div className='relative w-7 h-7 rounded-full overflow-hidden'>
                     {!form?.university?.logo ? <div className='w-7 h-7 bg-green-800'></div> :
                     <Image src={`/img/${form?.university?.logo}`} layout="fill" objectFit="cover" />}
@@ -62,7 +68,7 @@ export default function Home() {
             </div>
 
             <div className=''>
-                <select className='p-3 flex items-center gap-4 bg-[#0f0f0f] rounded-md w-full border-0' onChange={handleFee}>
+                <select required className='border-2 border-neutral-400 p-3 flex items-center gap-4 rounded-md w-full   ' onChange={handleFee}>
                     <option value=''>Payment for?</option>
                     {form?.university?.options?.map(({type}, index) => (
                         <option key={index} value={type}>{type}</option>
@@ -71,32 +77,32 @@ export default function Home() {
             </div>
 
             <div className=''>
-                <input className='p-3 flex items-center gap-4 bg-[#0f0f0f] rounded-md w-full' placeholder='Amount' value={form.amount} onChange={(e) => setForm({...form, amount:e.target.value})} />
+                <input required type="number" className='border-2 border-neutral-400 p-3 flex items-center gap-4 rounded-md w-full' placeholder='Amount' value={form.amount} onChange={(e) => setForm({...form, amount:e.target.value})} />
             </div>
 
             <div className=''>
-                <input className='p-3 flex items-center gap-4 bg-[#0f0f0f] rounded-md w-full' placeholder='Fullname' value={form.fullname} onChange={(e) => setForm({...form, fullname:e.target.value})} />
+                <input required className='border-2 border-neutral-400 p-3 flex items-center gap-4 rounded-md w-full' placeholder='Fullname' value={form.fullname} onChange={(e) => setForm({...form, fullname:e.target.value})} />
             </div>
 
             <div className=''>
-                <input className='p-3 flex items-center gap-4 bg-[#0f0f0f] rounded-md w-full' placeholder='Email' value={form.email} onChange={(e) => setForm({...form, email:e.target.value})} />
+                <input required type="email" className='border-2 border-neutral-400 p-3 flex items-center gap-4 rounded-md w-full' placeholder='Email' value={form.email} onChange={(e) => setForm({...form, email:e.target.value})} />
             </div>
 
             <div className=''>
-                <input className='p-3 flex items-center gap-4 bg-[#0f0f0f] rounded-md w-full' placeholder='Phone' value={form.phone} onChange={(e) => setForm({...form, phone:e.target.value})} />
+                <input required type="number" className='border-2 border-neutral-400 p-3 flex items-center gap-4 rounded-md w-full' placeholder='Phone' value={form.phone} onChange={(e) => setForm({...form, phone:e.target.value})} />
             </div>
 
             <div className=''>
-                <Link href="/confirmation" onClick={() => {localStorage.setItem('payment', JSON.stringify(form))}} className='p-3 bg-sky-600 block rounded-md w-full text-center text-sm font-bold'>
+                <button type="submit" className='border-2 border-black p-4 bg-black block rounded-md w-full text-white text-center text-sm font-bold'>
                     Submit
-                </Link>
+                </button>
             </div>
 
-        </div>
+        </form>
 
-        <div className={`${modalOpen ? 'block' : 'hidden'} fixed inset-0 w-full h-full bg-black p-4`}>
+        <div className={`${modalOpen ? 'block' : 'hidden'} fixed inset-0 w-full h-full p-4 bg-white`}>
             <div className=''>
-                <input className='p-3 flex items-center gap-4 bg-zinc-900 rounded-md w-full' placeholder='Phone' />
+                <input className='p-3 flex items-center gap-4 bg-neutral-200 rounded-md w-full' placeholder='Phone' />
             </div>
 
             <div className='py-2'>
